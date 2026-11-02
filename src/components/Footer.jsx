@@ -33,11 +33,11 @@ const Footer = () => {
             <img
               src={Logo}
               alt="PIA School Logo"
-              className="h-16 w-16 rounded-md bg-white object-contain p-1"
+              className="h-16 w-16 object-contain p-1"
             />
             <div>
               <h2 className="text-xl font-bold text-white">
-                PIA School
+                Parlance
               </h2>
               <p className="text-sm text-gray-400">
                 Learn. Grow. Succeed.

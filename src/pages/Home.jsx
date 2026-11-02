@@ -111,7 +111,7 @@ const Home = () => {
           >
             <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium tracking-wide text-white backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-blue-400" />
-              Welcome to Pathways International Academy
+              Welcome to Parlance International Academy
             </span>
 
             <h1 className="text-5xl leading-[1.12] font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
@@ -166,7 +166,7 @@ const Home = () => {
             </h2>
 
             <p className="mt-7 leading-8 text-slate-600">
-              At Pathways International Academy, we believe education goes
+              At Parlance International Academy, we believe education goes
               beyond textbooks and classrooms. Our mission is to nurture
               disciplined, ethical and confident learners through quality
               education and holistic development.
