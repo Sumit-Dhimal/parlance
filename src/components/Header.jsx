@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import { LuMenu, LuX } from "react-icons/lu";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +8,31 @@ import logo from "../assets/pia_logo.png";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef(null);
+
+  // handles logo click -> to refresh
+  const handleLogoClick = () => {
+    if (location.pathname === "/") {
+      window.location.reload();
+    } else {
+      navigate("/");
+    }
+  };
+
+  // Close mobile navbar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+    };
+  }, []);
 
   // this will ensure that page will reload from top
   useEffect(() => {
@@ -43,6 +68,13 @@ const Header = () => {
           : "text-white"
     }`;
 
+    const mobileLinkStyles = ({ isActive }) =>
+      `text-sm font-medium transition-colors duration-300 hover:text-blue-600 ${
+        isActive
+          ? "text-blue-600 font-semibold"
+          : "text-gray-700"
+      }`;
+
   const menuVariants = {
     hidden: {
       opacity: 0,
@@ -72,6 +104,7 @@ const Header = () => {
 
   return (
     <motion.header
+      ref={navRef}
       initial={false}
       animate={{
         backgroundColor: isScrolled
@@ -93,11 +126,11 @@ const Header = () => {
         className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8"
       >
         {/* Logo */}
-        <Link to="/" onClick={() => setIsOpen(false)}>
+        <Link to="/" onClick={ () => handleLogoClick()}>
           <img
             src={logo}
             alt="PIA logo"
-            className="w-auto h-20 object-contain"
+            className="w-auto h-16 md:20 object-contain"
           />
         </Link>
 
@@ -170,7 +203,7 @@ const Header = () => {
                   <NavLink
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={linkStyles}
+                    className={mobileLinkStyles}
                   >
                     {link.name}
                   </NavLink>
