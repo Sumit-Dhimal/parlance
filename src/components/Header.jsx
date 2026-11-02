@@ -12,10 +12,11 @@ const Header = () => {
 
   // handles logo click -> to refresh
   const handleLogoClick = () => {
-    if (location.pathname === "/") {
+    if (location.pathname === "/parlance/" ||
+      location.pathname === "/parlance") {
       window.location.reload();
     } else {
-      navigate("/");
+      navigate("/parlance");
     }
   };
 
